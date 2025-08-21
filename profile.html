@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GP News Media – Member Profile</title>
+  <link rel="icon" href="https://yt3.googleusercontent.com/ytc/AIdro_ktg8B0Z-nDbf_1Ecg3Udpm-5kcbXzmKzHmG6ET0CqhqQ=s160-c-k-c0x00ffffff-no-rj">
+  <style>
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: #0b1220;
+      color: #e6edf3;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 16px;
+    }
+    .card {
+      background: #0f172a;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      max-width: 420px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .card-header {
+      text-align: center;
+      padding: 24px 16px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .card-header img {
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+      border: 2px solid rgba(41,163,255,.5);
+      object-fit: cover;
+      margin-bottom: 12px;
+    }
+    .card-header h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .role {
+      color: #9aa7b2;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .card-body {
+      padding: 20px;
+      display: grid;
+      gap: 10px;
+    }
+    .field {
+      background: rgba(255,255,255,.02);
+      border: 1px dashed rgba(255,255,255,.08);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .field strong {
+      display: block;
+      font-size: 12px;
+      color: #9aa7b2;
+      margin-bottom: 2px;
+    }
+    .status {
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .status.active { background: rgba(56,239,125,.2); color: #38ef7d; }
+    .status.expired { background: rgba(255,82,82,.2); color: #ff5252; }
+    .card-footer {
+      padding: 16px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+      font-size: 12px;
+      color: #9aa7b2;
+    }
+  </style>
+</head>
+<body>
+  <div id="profileCard" class="card">
+    <div style="padding:20px;text-align:center">Loading profile…</div>
+  </div>
+
+  <script>
+    async function loadProfile() {
+      try {
+        const res = await fetch("data/ALL_MEMBERS.json"); // make sure path is correct
+        const MEMBERS = await res.json();
+
+        function fmt(iso){ const d=new Date(iso); return d.toLocaleDateString("en-IN",{year:'numeric',month:'short',day:'numeric'});}
+        function daysUntil(iso){ return Math.floor((new Date(iso)-new Date())/(1000*60*60*24)); }
+
+        const params = new URLSearchParams(window.location.search);
+        const memberId = params.get("id");
+        const member = MEMBERS.find(m => m.id === memberId);
+
+        const container = document.getElementById("profileCard");
+
+        if(!member){
+          container.innerHTML = `<div style="padding:20px;text-align:center">❌ Member not found</div>`;
+          return;
+        }
+
+        const expired = daysUntil(member.validTill) < 0;
+        container.innerHTML = `
+          <div class="card-header">
+            <img src="${member.avatar}" alt="${member.name}">
+            <h2>${member.name}</h2>
+            <div class="role">${member.role}</div>
+          </div>
+          <div class="card-body">
+            <div class="field"><strong>ID Number</strong>${member.id}</div>
+            <div class="field"><strong>Locality</strong>${member.locality || "-"}</div>
+            <div class="field"><strong>Constituency</strong>${member.constituency || "-"}</div>
+            <div class="field"><strong>City</strong>${member.city}</div>
+            <div class="field"><strong>Phone</strong>${member.phone}</div>
+         =
+            <div class="field"><strong>Joining Date</strong>${fmt(member.joined)}</div>
+            <div class="field"><strong>Valid Till</strong>${fmt(member.validTill)}</div>
+            <div class="status ${expired?"expired":"active"}">${expired?"EXPIRED":member.status.toUpperCase()}</div>
+          </div>
+          <div class="card-footer">
+            <p><strong>GP News Media</strong> – Independent Digital Media Platform</p>
+            <p>Verification via Directory or QR Scan</p>
+            <p>📞 Media Helpline: +91-9765854761</p>
+          </div>
+        `;
+      } catch(err) {
+        document.getElementById("profileCard").innerHTML =
+          `<div style="padding:20px;text-align:center">⚠️ Could not load profile.</div>`;
+        console.error(err);
+      }
+    }
+
+    loadProfile();
+  </script>
+</body>
+</html>

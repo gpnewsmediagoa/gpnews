@@ -203,145 +203,78 @@
   </footer>
 
   <!-- Data + Logic -->
-  <script>
-    // const MEMBERS = Array.from({length:20}).map((_,i)=>({
-    //   id: `GP-${String(i+1).padStart(4,'0')}`,
-    //   name: `Member ${i+1}`,
-    //   role: i%4===0?"Video Journalist": i%4===1?"Journalist": i%4===2?"Correspondent":"Editor",
-    //   city: ["Panjim","Margao","Mapusa","Ponda","Vasco","Bicholim","Curchorem","Quepem","Canacona","Sanguem","Valpoi"][i%11],
-    //   state: "Goa",
-    //   status: i%3===0?"Active": i%3===1?"On Hold":"Expired",
-    //   phone: `+91-98XXXXXX${String(i+1).padStart(2,'0')}`,
-    //   email: `member${i+1}@gpnewsmedia.in`,
-    //   validTill: "2025-12-31",
-    //   joined: "2024-01-01",
-    //   avatar: "images/prajyot.jpg",
-    //   profile: `profiles/GP-${String(i+1).padStart(4,'0')}.html`
-    // }
-// ));
-    const MEMBERS = [
-        {
-        id: "GP-05-0010",
-        name: "Prajyot Gaonkar",
-        role: "Video Journalist",
-        locality: "Bethoda",
-        constituency: "Shiroda",
-        city: "Ponda",
-        state: "Goa",
-        status: "Active",
-        phone: "+91-8262099436",
-        email: "prajyot@gpnewsmedia.in",
-        validTill: "2028-12-31",
-        joined: "2020-01-24",
-        avatar: "images/prajyot.jpg",
-        profile: "profiles/GP-05-0010.html"
-      },
-    {
-        id: "GP-05-0011",
-        name: "Rahul Naik",
-        role: "Video Journalist",
-        locality: "Borim",
-        constituency: "Shiroda",
-        city: "Ponda",
-        state: "Goa",
-        status: "Active",
-        phone: "+91-9730913835",
-        email: "rahul@gpnewsmedia.in",
-        validTill: "2028-12-24",
-        joined: "2020-12-24",
-        avatar: "images/rahul.png",
-        profile: "profiles/GP-05-0011.html"
-      },
-    {
-        id: "GP-05-0012",
-        name: "Dhanraj Naik",
-        role: "Video Journalist",
-        locality: "Vazem",
-        constituency: "Shiroda",
-        city: "Ponda",
-        state: "Goa",
-        status: "Active",
-        phone: "+91-9765854761",
-        email: "dhanraj@gpnewsmedia.in",
-        validTill: "2028-12-19",
-        joined: "2021-12-19",
-        avatar: "images/dhanraj.png",
-        profile: "profiles/GP-05-0012.html"
-      },
-    {
-        id: "GP-05-0013",
-        name: "Ashlon Rodrigues",
-        role: "Video Journalist",
-        locality: "Panchwadi",
-        constituency: "Shiroda",
-        city: "Ponda",
-        state: "Goa",
-        status: "Active",
-        phone: "+91-8459975852",
-        email: "ashlon@gpnewsmedia.in",
-        validTill: "2028-12-31",
-        joined: "2020-12-31",
-        avatar: "images/ashlon.jpg",
-        profile: "profiles/GP-05-0012.html"
-      }
-    ]
+<script>
+  async function loadMembers() {
+    try {
+      const res = await fetch("data/ALL_MEMBERS.json"); // path relative to root
+      const MEMBERS = await res.json();
 
+      const grid = document.getElementById('grid');
 
-    const grid = document.getElementById('grid');
-    function card(member){
-      const daysLeft = daysUntil(member.validTill);
-      const statusBadge = daysLeft < 0 ? 'Expired' : member.status;
-      return `
-        <article class="card">
-          <div class="card-head">
-            <img class="avatar" src="${member.avatar}" alt="${member.name}" />
-            <div>
-              <div class="title">${member.name}</div>
-              <div class="role">${member.role}</div>
+      function card(member){
+        const daysLeft = daysUntil(member.validTill);
+        const statusBadge = daysLeft < 0 ? 'Expired' : member.status;
+        return `
+          <article class="card">
+            <div class="card-head">
+              <img class="avatar" src="${member.avatar}" alt="${member.name}" />
+              <div>
+                <div class="title">${member.name}</div>
+                <div class="role">${member.role}</div>
+              </div>
             </div>
-          </div>
-          <div class="meta">
-            <div><strong>ID:</strong> ${member.id}</div>
-            <div><strong>City:</strong> ${member.city}</div>
-            <div><strong>Joined:</strong> ${fmt(member.joined)}</div>
-            <div><strong>Valid Till:</strong> ${fmt(member.validTill)}</div>
-          </div>
-          <div class="card-foot">
-            <span class="pill">${statusBadge}</span>
-            <a class="btn" href="${member.profile}" target="_blank" rel="noopener">Open Profile ▸</a>
-          </div>
-        </article>`;
-    }
-    function render(){
-      const q = document.getElementById('search').value.toLowerCase();
-      const role = document.getElementById('role').value;
-      const stat = document.getElementById('status').value;
-      const out = MEMBERS.filter(m =>
-        (!q || [m.name, m.city, m.id].some(x=>x.toLowerCase().includes(q))) &&
-        (!role || m.role === role) &&
-        (!stat || (stat === 'Expired' ? daysUntil(m.validTill) < 0 : m.status === stat))
-      ).map(card).join('');
-      grid.innerHTML = out || `<div class="panel">No results. Try a different search or filter.</div>`;
-    }
-    ['search','role','status'].forEach(id=>document.getElementById(id).addEventListener('input', render));
+            <div class="meta">
+              <div><strong>ID:</strong> ${member.id}</div>
+              <div><strong>City:</strong> ${member.city}</div>
+              <div><strong>Joined:</strong> ${fmt(member.joined)}</div>
+              <div><strong>Valid Till:</strong> ${fmt(member.validTill)}</div>
+            </div>
+            <div class="card-foot">
+              <span class="pill">${statusBadge}</span>
+              <a class="btn" href="profile.html?id=${member.id}">Open Profile ▸</a>
+            </div>
+          </article>`;
+      }
 
-    function fmt(iso) {
-      const d = new Date(iso);
-      return d.toLocaleDateString("en-IN", { year: 'numeric', month: 'short', day: 'numeric' });
+      function render(){
+        const q = document.getElementById('search').value.toLowerCase();
+        const role = document.getElementById('role').value;
+        const stat = document.getElementById('status').value;
+        const out = MEMBERS.filter(m =>
+          (!q || [m.name, m.city, m.id].some(x=>x.toLowerCase().includes(q))) &&
+          (!role || m.role === role) &&
+          (!stat || (stat === 'Expired' ? daysUntil(m.validTill) < 0 : m.status === stat))
+        ).map(card).join('');
+        grid.innerHTML = out || `<div class="panel">No results. Try a different search or filter.</div>`;
+      }
+
+      function fmt(iso) {
+        const d = new Date(iso);
+        return d.toLocaleDateString("en-IN", { year: 'numeric', month: 'short', day: 'numeric' });
+      }
+
+      function daysUntil(iso) {
+        const diff = new Date(iso) - new Date();
+        return Math.floor(diff / (1000 * 60 * 60 * 24));
+      }
+
+      // Attach search/filter listeners
+      ['search','role','status'].forEach(id =>
+        document.getElementById(id).addEventListener('input', render)
+      );
+
+      // Initial render
+      render();
+
+    } catch (err) {
+      console.error("Failed to load members:", err);
+      document.getElementById('grid').innerHTML = `<div class="panel">⚠️ Could not load member directory.</div>`;
     }
+  }
 
-    function daysUntil(iso) {
-      const diff = new Date(iso) - new Date();
-      return Math.floor(diff / (1000 * 60 * 60 * 24));
-    }
+  // Call loader after page loads
+  loadMembers();
+</script>
 
-    // Attach search/filter listeners
-    ['search','role','status'].forEach(id =>
-      document.getElementById(id).addEventListener('input', render)
-    );
-
-    // Initial render on page load
-    render();
-  </script>
 </body>
 </html>

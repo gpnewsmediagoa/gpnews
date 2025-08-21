@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Redirecting...</title>
+  <script>
+    // This will run when page loads
+    window.onload = function () {
+      // Get the raw data after ?id=
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id");
+
+      if (id) {
+        // Redirect to actual profile
+        window.location.href = `profile.html?id=${id}`;
+      } else {
+        document.body.innerHTML = "<h2>❌ No ID provided</h2>";
+      }
+    };
+  </script>
+</head>
+<body>
+  <p>Redirecting to profile…</p>
+</body>
+</html>

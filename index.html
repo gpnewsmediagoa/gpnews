@@ -356,85 +356,174 @@
     }
 
     /* Verified Card */
-.verify-card {
-  margin-top: 16px;
-  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 18px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 420px;
-  animation: slideUp 0.4s ease-out;
-}
+    .verify-card {
+      margin-top: 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 420px;
+      animation: slideUp 0.4s ease-out;
+    }
 
-.verify-avatar {
-  width: 90px;
-  height: 90px;
-  border-radius: 14px;
-  object-fit: cover;
-  border: 2px solid var(--brand);
-  margin-bottom: 10px;
-}
+    .verify-avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 2px solid var(--brand);
+      margin-bottom: 10px;
+    }
 
-.verify-name {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-}
+    .verify-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
 
-.verify-role {
-  font-size: 14px;
-  color: var(--muted);
-  font-weight: 600;
-  margin-bottom: 8px;
-}
+    .verify-role {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
 
-.verify-status {
-  margin-top: 6px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 600;
-}
-.verify-status.active { background: rgba(56,239,125,.2); color: #38ef7d; }
-.verify-status.expired { background: rgba(255,82,82,.2); color: #ff5252; }
+    .verify-status {
+      margin-top: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
 
-.verify-meta {
-  margin-top: 10px;
-  font-size: 13px;
-  color: var(--muted);
-}
+    .verify-status.active {
+      background: rgba(56, 239, 125, .2);
+      color: #38ef7d;
+    }
 
-.verify-btn {
-  margin-top: 14px;
-  text-decoration: none;
-  display: inline-block;
-  background: linear-gradient(135deg, var(--brand), var(--brand-2));
-  color: #001324;
-  font-weight: 600;
-  padding: 10px 18px;
-  border-radius: 10px;
-  transition: transform 0.2s ease;
-}
-.verify-btn:hover {
-  transform: translateY(-2px);
-}
+    .verify-status.expired {
+      background: rgba(255, 82, 82, .2);
+      color: #ff5252;
+    }
 
-/* Slide-up animation */
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+    .verify-meta {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .verify-btn {
+      margin-top: 14px;
+      text-decoration: none;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #001324;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+    }
+
+    .verify-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Slide-up animation */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Footer Connect Styling */
+    .social-links {
+      display: flex;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .social-links .icon-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+    }
+
+    .social-links .icon-link svg {
+      width: 22px;
+      height: 22px;
+      transition: transform 0.25s ease, fill 0.25s ease;
+    }
+
+    .social-links .icon-link span {
+      opacity: 0;
+      max-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    /* Hover Effect */
+    .social-links .icon-link:hover {
+      color: var(--text);
+    }
+
+    .social-links .icon-link:hover svg {
+      transform: scale(1.2);
+    }
+
+    .social-links .icon-link:hover span {
+      opacity: 1;
+      max-width: 100px;
+      margin-left: 4px;
+    }
+
+    /* Brand-specific colors on hover */
+    .social-links .icon-link[aria-label="Facebook"]:hover svg {
+      fill: #1877f2;
+    }
+
+    .social-links .icon-link[aria-label="YouTube"]:hover svg {
+      fill: #ff0000;
+    }
+    /* Mobile adjustments for footer social links */
+@media (max-width: 600px) {
+  .social-links {
+    justify-content: center;
+    gap: 20px;
   }
-  to {
+
+  .social-links .icon-link span {
     opacity: 1;
-    transform: translateY(0);
+    max-width: none;
+    margin-left: 6px;
+  }
+
+  .social-links .icon-link {
+    font-size: 15px;
+    gap: 8px;
+  }
+
+  .social-links .icon-link svg {
+    width: 26px;
+    height: 26px;
   }
 }
+
   </style>
 </head>
 
@@ -543,16 +632,16 @@
   </section>
 
   <section id="verify">
-  <div class="container">
-    <div class="panel">
-      <h3>Verify Member ID</h3>
-      <p class="muted">Enter the Press ID number to check validity.</p>
-      <input id="verifyInput" class="input" placeholder="Enter ID number">
-      <button class="btn primary" onclick="verifyMember()">Verify</button>
-      <div id="verifyResult" style="margin-top:12px;"></div>
+    <div class="container">
+      <div class="panel">
+        <h3>Verify Member ID</h3>
+        <p class="muted">Enter the Press ID number to check validity.</p>
+        <input id="verifyInput" class="input" placeholder="Enter ID number">
+        <button class="btn primary" onclick="verifyMember()">Verify</button>
+        <div id="verifyResult" style="margin-top:12px;"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
 
@@ -576,42 +665,44 @@
 
       <div>
         <div><strong>Connect</strong></div>
-        <div style="display:flex; gap:14px; margin-top:8px;">
+        <div class="social-links">
           <a class="icon-link" href="https://www.facebook.com/GPNewsMedia24/" target="_blank" aria-label="Facebook">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99h-2.54V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 17 22 12z" />
             </svg>
+            <span>Facebook</span>
           </a>
           <a class="icon-link" href="https://www.youtube.com/c/gpnewsmedia24" target="_blank" aria-label="YouTube">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
                 d="M19.615 3.184c-1.407-.152-4.853-.184-7.615-.184s-6.208.032-7.615.184C2.732 3.348 2 4.207 2 6.5v11c0 2.293.732 3.152 2.385 3.316 1.407.152 4.853.184 7.615.184s6.208-.032 7.615-.184C21.268 20.652 22 19.793 22 17.5v-11c0-2.293-.732-3.152-2.385-3.316zM10 15.5v-7l6 3.5-6 3.5z" />
             </svg>
+            <span>YouTube</span>
           </a>
         </div>
-
       </div>
+
     </div>
   </footer>
 
 
   <!-- Data + Logic -->
   <script>
-     async function verifyMember() {
-    const input = document.getElementById("verifyInput").value.trim();
-    const resultBox = document.getElementById("verifyResult");
-    resultBox.innerHTML = `<div style="padding:10px; text-align:center; color:var(--muted)">⏳ Checking…</div>`;
+    async function verifyMember() {
+      const input = document.getElementById("verifyInput").value.trim();
+      const resultBox = document.getElementById("verifyResult");
+      resultBox.innerHTML = `<div style="padding:10px; text-align:center; color:var(--muted)">⏳ Checking…</div>`;
 
-    try {
-      const res = await fetch("data/ALL_MEMBERS.json");
-      const MEMBERS = await res.json();
+      try {
+        const res = await fetch("data/ALL_MEMBERS.json");
+        const MEMBERS = await res.json();
 
-      const member = MEMBERS.find(m => m.id.toLowerCase() === input.toLowerCase());
+        const member = MEMBERS.find(m => m.id.toLowerCase() === input.toLowerCase());
 
-if (member) {
-  const expired = new Date(member.validTill) < new Date();
-  resultBox.innerHTML = `
+        if (member) {
+          const expired = new Date(member.validTill) < new Date();
+          resultBox.innerHTML = `
     <div style="
       margin-top:16px;
       background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
@@ -650,19 +741,19 @@ if (member) {
       </a>
     </div>
   `;
-} else{
-  resultBox.innerHTML = `
+        } else {
+          resultBox.innerHTML = `
         <div style="margin-top:16px; padding:12px; border-radius:12px; background:rgba(255,82,82,.1); color:#ff5252; text-align:center;">
           ❌ No record found for <strong>${input}</strong>
         </div>
       `;
-}
+        }
 
-    } catch (err) {
- resultBox.innerHTML = `<div style="padding:12px; color:#ff5252;">⚠️ Error verifying ID. Try again later.</div>`;
-    console.error(err);
+      } catch (err) {
+        resultBox.innerHTML = `<div style="padding:12px; color:#ff5252;">⚠️ Error verifying ID. Try again later.</div>`;
+        console.error(err);
+      }
     }
-  }
 
     async function loadMembers() {
       try {

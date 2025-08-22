@@ -188,37 +188,10 @@
 
     /* Search/Filters */
     .toolbar {
-      margin: 20px 0 30px;
-      /* adds top & bottom breathing space */
+      margin-top: 22px;
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-
-    @media (max-width: 600px) {
-      .toolbar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .toolbar .input,
-      .toolbar select {
-        width: 100%;
-        font-size: 15px;
-        padding: 8px 12px;
-        /* lighter padding */
-        border-radius: 10px;
-        /* same rounded style as desktop */
-        height: auto;
-        /* ✅ don't force square tile */
-        box-sizing: border-box;
-      }
-
-      .grow {
-        flex: 1 1 auto;
-        min-width: 0;
-      }
+      gap: 10px;
+      flex-wrap: wrap
     }
 
     .input,
@@ -238,8 +211,7 @@
     }
 
     .grow {
-      flex: 1 1 320px;
-      min-width: 0;
+      flex: 1 1 320px
     }
 
     /* Cards grid */
@@ -642,7 +614,11 @@
       <div class="fb-wrapper">
         <div id="fb-root"></div>
         <div class="fb-page" data-href="https://www.facebook.com/GPNewsMedia24/" data-tabs="timeline" data-width="1200"
-          data-height="" data-small-header="false" data-hide-cover="false" data-show-facepile="true">
+          <!-- wide enough for laptops -->
+          data-height=""
+          data-small-header="false"
+          data-hide-cover="false"
+          data-show-facepile="true">
         </div>
       </div>
     </div>
@@ -651,30 +627,31 @@
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0">
   </script>
 
+  <!-- Filters -->
+  <div class="toolbar">
+    <input id="search" class="input grow" placeholder="Search by name, city, or ID…" />
+    <select id="role">
+      <option value="">All Roles</option>
+      <option>Journalist</option>
+      <option>Video Journalist</option>
+      <option>Correspondent</option>
+      <option>Editor</option>
+      <option>Photographer</option>
+    </select>
+    <select id="status">
+      <option value="">All Status</option>
+      <option>Active</option>
+      <option>On Hold</option>
+      <option>Expired</option>
+    </select>
+  </div>
+  </div>
+  </section>
+
   <!-- Directory -->
   <section id="directory">
     <div class="container">
       <h3>Official Directory & Verification</h3>
-
-      <!-- Filters -->
-      <div class="toolbar">
-        <input id="search" class="input grow" placeholder="Search by name, city, or ID…" />
-        <select id="role">
-          <option value="">All Roles</option>
-          <option>Journalist</option>
-          <option>Video Journalist</option>
-          <option>Correspondent</option>
-          <option>Editor</option>
-          <option>Photographer</option>
-        </select>
-        <select id="status">
-          <option value="">All Status</option>
-          <option>Active</option>
-          <option>On Hold</option>
-          <option>Expired</option>
-        </select>
-      </div>
-
       <div id="grid" class="grid" aria-live="polite"></div>
     </div>
   </section>

@@ -206,12 +206,9 @@
       .toolbar select {
         width: 100%;
       }
-
       .grow {
         flex: 1 1 auto;
-        /* reset flexible growth */
-        min-width: 0;
-        /* ensures it doesn’t overflow */
+        min-width: 100%;
       }
     }
 
@@ -232,7 +229,8 @@
     }
 
     .grow {
-      flex: 1 1 320px
+      flex: 1 1 320px;
+      min-width: 0;
     }
 
     /* Cards grid */

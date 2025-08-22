@@ -205,10 +205,19 @@
       .toolbar .input,
       .toolbar select {
         width: 100%;
+        font-size: 15px;
+        padding: 8px 12px;
+        /* lighter padding */
+        border-radius: 10px;
+        /* same rounded style as desktop */
+        height: auto;
+        /* ✅ don't force square tile */
+        box-sizing: border-box;
       }
+
       .grow {
         flex: 1 1 auto;
-        min-width: 100%;
+        min-width: 0;
       }
     }
 

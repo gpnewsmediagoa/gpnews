@@ -522,7 +522,37 @@
     width: 26px;
     height: 26px;
   }
+#latest-posts {
+  padding: 40px 0;
+  background: var(--card);
 }
+
+#latest-posts h3 {
+  font-size: 24px;
+  color: var(--text);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.fb-wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.fb-page {
+  width: 100% !important;
+  max-width: 500px; /* limits size on desktop */
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .fb-page {
+    max-width: 100% !important;
+  }
+}
+
 
   </style>
 </head>
@@ -642,6 +672,32 @@
       </div>
     </div>
   </section>
+
+
+<section id="latest-posts">
+  <div class="container">
+    <h3>Latest from GP News Media</h3>
+    <div class="fb-wrapper">
+      <div id="fb-root"></div>
+      <div class="fb-page"
+           data-href="https://www.facebook.com/GPNewsMedia24/"
+           data-tabs="timeline"
+           data-width="500"
+           data-height=""
+           data-small-header="false"
+           data-hide-cover="false"
+           data-show-facepile="true">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Load FB SDK once -->
+<script async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0">
+</script>
+
+
 
 
 

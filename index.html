@@ -354,6 +354,87 @@
       width: 20px;
       height: 20px;
     }
+
+    /* Verified Card */
+.verify-card {
+  margin-top: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 420px;
+  animation: slideUp 0.4s ease-out;
+}
+
+.verify-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 2px solid var(--brand);
+  margin-bottom: 10px;
+}
+
+.verify-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.verify-role {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.verify-status {
+  margin-top: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.verify-status.active { background: rgba(56,239,125,.2); color: #38ef7d; }
+.verify-status.expired { background: rgba(255,82,82,.2); color: #ff5252; }
+
+.verify-meta {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.verify-btn {
+  margin-top: 14px;
+  text-decoration: none;
+  display: inline-block;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color: #001324;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+.verify-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Slide-up animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   </style>
 </head>
 
@@ -461,6 +542,19 @@
     </div>
   </section>
 
+  <section id="verify">
+  <div class="container">
+    <div class="panel">
+      <h3>Verify Member ID</h3>
+      <p class="muted">Enter the Press ID number to check validity.</p>
+      <input id="verifyInput" class="input" placeholder="Enter ID number">
+      <button class="btn primary" onclick="verifyMember()">Verify</button>
+      <div id="verifyResult" style="margin-top:12px;"></div>
+    </div>
+  </div>
+</section>
+
+
 
 
   <!-- FOOTER -->
@@ -504,6 +598,72 @@
 
   <!-- Data + Logic -->
   <script>
+     async function verifyMember() {
+    const input = document.getElementById("verifyInput").value.trim();
+    const resultBox = document.getElementById("verifyResult");
+    resultBox.innerHTML = `<div style="padding:10px; text-align:center; color:var(--muted)">⏳ Checking…</div>`;
+
+    try {
+      const res = await fetch("data/ALL_MEMBERS.json");
+      const MEMBERS = await res.json();
+
+      const member = MEMBERS.find(m => m.id.toLowerCase() === input.toLowerCase());
+
+if (member) {
+  const expired = new Date(member.validTill) < new Date();
+  resultBox.innerHTML = `
+    <div style="
+      margin-top:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 400px;
+    ">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <img src="${member.avatar}" alt="${member.name}" style="width:90px; height:90px; border-radius:14px; border:2px solid ${expired ? '#ff5252' : '#38ef7d'}; object-fit:cover;" />
+        <div style="font-size:20px; font-weight:700; color:#e6edf3;">${member.name}</div>
+        <div style="color:var(--muted); font-weight:600;">${member.role}</div>
+        <span style="
+          margin-top:6px;
+          padding:6px 14px;
+          border-radius:999px;
+          font-size:13px;
+          font-weight:600;
+          background:${expired ? "rgba(255,82,82,.2)" : "rgba(56,239,125,.2)"};
+          color:${expired ? "#ff5252" : "#38ef7d"};
+        ">
+          ${expired ? "Expired" : "✅ Verified – " + member.status}
+        </span>
+      </div>
+      <div style="margin-top:14px; font-size:13px; color:var(--muted);">
+        ID: ${member.id} · City: ${member.city}
+      </div>
+      <a href="profile.html?id=${member.id}" 
+         style="margin-top:16px; text-decoration:none; display:inline-block; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#001324; font-weight:600; padding:10px 18px; border-radius:10px; transition:0.2s;">
+         View Full Profile ▸
+      </a>
+    </div>
+  `;
+} else{
+  resultBox.innerHTML = `
+        <div style="margin-top:16px; padding:12px; border-radius:12px; background:rgba(255,82,82,.1); color:#ff5252; text-align:center;">
+          ❌ No record found for <strong>${input}</strong>
+        </div>
+      `;
+}
+
+    } catch (err) {
+ resultBox.innerHTML = `<div style="padding:12px; color:#ff5252;">⚠️ Error verifying ID. Try again later.</div>`;
+    console.error(err);
+    }
+  }
+
     async function loadMembers() {
       try {
         const res = await fetch("data/ALL_MEMBERS.json"); // path relative to root

@@ -1,122 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GP News Media – Official Directory & Verification</title>
-  <meta name="description" content="GP News Media is a Goa-based independent digital media channel reaching every village to urban areas across all 11 talukas of Goa." />
-  <link rel="icon" href="https://yt3.googleusercontent.com/ytc/AIdro_ktg8B0Z-nDbf_1Ecg3Udpm-5kcbXzmKzHmG6ET0CqhqQ=s160-c-k-c0x00ffffff-no-rj">
+  <meta name="description"
+    content="GP News Media is a Goa-based independent digital media channel reaching every village to urban areas across all 11 talukas of Goa." />
+  <link rel="icon"
+    href="https://yt3.googleusercontent.com/ytc/AIdro_ktg8B0Z-nDbf_1Ecg3Udpm-5kcbXzmKzHmG6ET0CqhqQ=s160-c-k-c0x00ffffff-no-rj">
   <style>
-    :root{
-      --bg:#0b1220;
-      --card:#0f172a;
-      --muted:#9aa7b2;
-      --text:#e6edf3;
-      --brand:#29a3ff;
-      --brand-2:#38ef7d;
-      --ring: rgba(56,239,125,.35);
-      --border: rgba(255,255,255,.08);
-      --shadow: 0 10px 30px rgba(0,0,0,.4);
+    :root {
+      --bg: #0b1220;
+      --card: #0f172a;
+      --muted: #9aa7b2;
+      --text: #e6edf3;
+      --brand: #29a3ff;
+      --brand-2: #38ef7d;
+      --ring: rgba(56, 239, 125, .35);
+      --border: rgba(255, 255, 255, .08);
+      --shadow: 0 10px 30px rgba(0, 0, 0, .4);
       --radius: 18px;
       --radius-sm: 12px;
       --space: clamp(14px, 1.8vw, 22px);
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
-      color:var(--text); background: radial-gradient(1200px 600px at 10% -10%, rgba(41,163,255,.12), transparent),
-                          radial-gradient(900px 500px at 90% 0%, rgba(56,239,125,.10), transparent),
-                          var(--bg);
+
+    * {
+      box-sizing: border-box
     }
-    a{color:var(--brand); text-decoration:none}
-    a:hover{text-decoration:underline}
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(41, 163, 255, .12), transparent),
+        radial-gradient(900px 500px at 90% 0%, rgba(56, 239, 125, .10), transparent),
+        var(--bg);
+    }
+
+    a {
+      color: var(--brand);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
 
     /* Header */
-    .nav{position:sticky; top:0; z-index:20; backdrop-filter:saturate(120%) blur(10px);
-      background: linear-gradient(180deg, rgba(11,18,32,.85), rgba(11,18,32,.65)); border-bottom:1px solid var(--border);}
-    .container{ max-width:1200px; margin:0 auto; padding: 0 var(--space); }
-    .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
-    .brand{ display:flex; gap:12px; align-items:center; }
-    .brand img{ width:44px; height:44px; border-radius:12px; box-shadow:0 8px 20px rgba(41,163,255,.35); }
-    .brand h1{ margin:0; font-size:20px; letter-spacing:.3px }
-    .nav-actions{ display:flex; gap:10px; align-items:center; flex-wrap:wrap }
-    .btn{ padding:10px 14px; border:1px solid var(--border); color:var(--text); border-radius:10px; background:rgba(255,255,255,.02);
-      transition:.2s ease; cursor:pointer; font-weight:600 }
-    .btn:hover{ border-color:rgba(41,163,255,.5); box-shadow:0 0 0 3px var(--ring) }
-    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--brand-2)); border:0; color:#001324 }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: saturate(120%) blur(10px);
+      background: linear-gradient(180deg, rgba(11, 18, 32, .85), rgba(11, 18, 32, .65));
+      border-bottom: 1px solid var(--border);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space);
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(41, 163, 255, .35);
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: .3px
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .02);
+      transition: .2s ease;
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    .btn:hover {
+      border-color: rgba(41, 163, 255, .5);
+      box-shadow: 0 0 0 3px var(--ring)
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      border: 0;
+      color: #001324
+    }
 
     /* Hero */
-    .hero{ padding: 60px 0 26px }
-    .hero h2{ font-size: clamp(26px, 3.2vw, 44px); margin: 0 0 10px; line-height: 1.05; }
-    .hero p{ color: var(--muted); max-width: 900px; font-size: clamp(14px, 1.3vw, 18px); margin: 8px 0 20px }
-    .badges{ display:flex; gap:10px; flex-wrap:wrap }
-    .badge{ padding:8px 12px; border-radius:999px; border:1px solid var(--border); color:var(--muted); }
+    .hero {
+      padding: 60px 0 26px
+    }
+
+    .hero h2 {
+      font-size: clamp(26px, 3.2vw, 44px);
+      margin: 0 0 10px;
+      line-height: 1.05;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 900px;
+      font-size: clamp(14px, 1.3vw, 18px);
+      margin: 8px 0 20px
+    }
+
+    .badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
 
     /* Search/Filters */
-    .toolbar{ margin-top:22px; display:flex; gap:10px; flex-wrap:wrap }
-    .input, select{ background:rgba(255,255,255,.03); border:1px solid var(--border); color:var(--text); border-radius:10px; padding:12px 12px; outline:none; }
-    .input:focus, select:focus{ border-color:rgba(41,163,255,.5); box-shadow:0 0 0 3px var(--ring) }
-    .grow{ flex: 1 1 320px }
+    .toolbar {
+      margin-top: 22px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .input,
+    select {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 12px 12px;
+      outline: none;
+    }
+
+    .input:focus,
+    select:focus {
+      border-color: rgba(41, 163, 255, .5);
+      box-shadow: 0 0 0 3px var(--ring)
+    }
+
+    .grow {
+      flex: 1 1 320px
+    }
 
     /* Cards grid */
-    .grid{ display:grid; gap:18px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); margin: 26px 0 50px }
-    .card{ background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column; }
-    .card-head{ display:flex; gap:14px; padding:16px; border-bottom:1px solid var(--border) }
-    .avatar{ width:64px; height:64px; border-radius:14px; background:#1b2236; object-fit:cover; border:1px solid var(--border) }
-    .title{ margin:2px 0 2px; font-weight:800 }
-    .role{ color:var(--muted); font-weight:600; font-size:14px }
-    .meta{ padding: 8px 16px; display:grid; gap:8px; grid-template-columns:1fr 1fr }
-    .meta div{ background:rgba(255,255,255,.02); border:1px dashed var(--border); padding:10px; border-radius:10px; font-size:12px; color:var(--muted) }
-    .card-foot{ padding:14px 16px; display:flex; gap:10px; align-items:center; justify-content:space-between; border-top:1px solid var(--border) }
-    .pill{ font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted) }
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      margin: 26px 0 50px
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-head {
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      border-bottom: 1px solid var(--border)
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background: #1b2236;
+      object-fit: cover;
+      border: 1px solid var(--border)
+    }
+
+    .title {
+      margin: 2px 0 2px;
+      font-weight: 800
+    }
+
+    .role {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px
+    }
+
+    .meta {
+      padding: 8px 16px;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 1fr 1fr
+    }
+
+    .meta div {
+      background: rgba(255, 255, 255, .02);
+      border: 1px dashed var(--border);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    .card-foot {
+      padding: 14px 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border)
+    }
+
+    .pill {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted)
+    }
 
     /* Sections */
-    section{ padding: 28px 0 }
-    h3{ margin:0 0 10px; font-size: clamp(18px, 2.2vw, 28px) }
-    .terms{ display:grid; gap:12px }
-    .terms p{ margin:0; color:var(--muted); line-height:1.6 }
-    .panel{ background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid var(--border); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow) }
+    section {
+      padding: 28px 0
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: clamp(18px, 2.2vw, 28px)
+    }
+
+    .terms {
+      display: grid;
+      gap: 12px
+    }
+
+    .terms p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(255, 255, 255, .01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow)
+    }
 
     /* Footer */
-    footer{ border-top:1px solid var(--border); padding: 30px 0 60px; color:var(--muted) }
-    .footgrid{ display:grid; gap:10px; grid-template-columns: 1fr; }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 30px 0 60px;
+      color: var(--muted)
+    }
 
-    @media (min-width: 720px){
-      .footgrid{ grid-template-columns: 2fr 1fr 1fr }
+    .footgrid {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 720px) {
+      .footgrid {
+        grid-template-columns: 2fr 1fr 1fr
+      }
     }
 
     /* Mobile adjustments */
-    @media (max-width: 600px){
-      .nav-row{ flex-direction:column; gap:10px; }
-      .nav-actions{ flex-wrap:wrap; justify-content:center; }
-      .hero h2{ font-size:24px }
-      .hero p{ font-size:14px }
+    @media (max-width: 600px) {
+      .nav-row {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero h2 {
+        font-size: 24px
+      }
+
+      .hero p {
+        font-size: 14px
+      }
+    }
+
+    .icon-link svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--muted);
+      /* neutral color */
+      transition: all 0.25s ease;
+    }
+
+    .icon-link:hover svg {
+      fill: var(--text);
+      transform: scale(1.15);
+    }
+
+    .icon-link[aria-label="Facebook"]:hover svg {
+      fill: #1877f2;
+    }
+
+    .icon-link[aria-label="YouTube"]:hover svg {
+      fill: #ff0000;
+    }
+
+    footer .icon-link svg {
+      width: 20px;
+      height: 20px;
     }
   </style>
 </head>
+
 <body>
   <!-- Header -->
+  <!-- HEADER -->
   <header class="nav">
     <div class="container nav-row">
-      <div class="brand">
-        <img src="https://yt3.googleusercontent.com/ytc/AIdro_ktg8B0Z-nDbf_1Ecg3Udpm-5kcbXzmKzHmG6ET0CqhqQ=s160-c-k-c0x00ffffff-no-rj" alt="GP News Media Logo">
+      <div class="brand" onclick="window.location.href='index.html'" style="cursor:pointer;">
+        <img
+          src="https://yt3.googleusercontent.com/ytc/AIdro_ktg8B0Z-nDbf_1Ecg3Udpm-5kcbXzmKzHmG6ET0CqhqQ=s160-c-k-c0x00ffffff-no-rj"
+          alt="GP News Media Logo">
         <h1>GP News Media</h1>
       </div>
       <div class="nav-actions">
-        <a class="btn" href="https://www.facebook.com/GPNewsMedia24/" target="_blank" rel="noopener">Facebook</a>
+        <a class="icon-link" href="https://www.facebook.com/GPNewsMedia24/" target="_blank" rel="noopener"
+          aria-label="Facebook">
+          <!-- Facebook SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#29a3ff" viewBox="0 0 24 24">
+            <path
+              d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99h-2.54V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 17 22 12z" />
+          </svg>
+        </a>
+        <a class="icon-link" href="https://www.youtube.com/c/gpnewsmedia24" target="_blank" rel="noopener"
+          aria-label="YouTube">
+          <!-- YouTube SVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#ff5252" viewBox="0 0 24 24">
+            <path
+              d="M19.615 3.184c-1.407-.152-4.853-.184-7.615-.184s-6.208.032-7.615.184C2.732 3.348 2 4.207 2 6.5v11c0 2.293.732 3.152 2.385 3.316 1.407.152 4.853.184 7.615.184s6.208-.032 7.615-.184C21.268 20.652 22 19.793 22 17.5v-11c0-2.293-.732-3.152-2.385-3.316zM10 15.5v-7l6 3.5-6 3.5z" />
+          </svg>
+        </a>
         <a class="btn" href="#directory">Directory</a>
         <a class="btn primary" href="#verify">Verify ID</a>
       </div>
     </div>
   </header>
 
+
   <!-- Hero -->
   <section class="hero">
     <div class="container">
       <h2>Independent Digital Newsroom for Goa</h2>
       <p>
-        <strong>GP News Media</strong> is an independent, non-partisan digital media channel exclusively focused on Goa. We reach from every village to the urban areas across all 11 talukas of Goa. Our reporters, video journalists, and correspondents cover civic issues, culture, and ground realities with accuracy, transparency, and responsibility.
+        <strong>GP News Media</strong> is an independent, non-partisan digital media channel exclusively focused on Goa.
+        We reach from every village to the urban areas across all 11 talukas of Goa. Our reporters, video journalists,
+        and correspondents cover civic issues, culture, and ground realities with accuracy, transparency, and
+        responsibility.
       </p>
       <div class="badges">
         <span class="badge">Free & Independent</span>
@@ -160,61 +444,77 @@
       <div class="panel">
         <h3>Instructions / Terms of Use</h3>
         <div class="terms">
-          <p><strong>1) Representative Status:</strong> This identification certifies the holder as an authorized employee/representative of GP News Media for news reporting and related activities.</p>
-          <p><strong>2) Purpose Bound:</strong> Issued solely for journalistic and news-reporting purposes including reporting, video journalism, and live coverage.</p>
-          <p><strong>3) Non-Transferable:</strong> Valid only for the person named and photographed on the card. Sharing, lending, or duplication is prohibited.</p>
-          <p><strong>4) Produce on Request:</strong> The bearer must present this ID to lawful authorities/security on demand and carry a valid government photo ID.</p>
-          <p><strong>5) Loss/Misuse:</strong> Any loss, theft, or misuse must be reported immediately to GP News Media for deactivation.</p>
-          <p><strong>6) Verification:</strong> Scan the QR on the Press ID or search the directory above to verify membership and validity.</p>
+          <p><strong>1) Representative Status:</strong> This identification certifies the holder as an authorized
+            employee/representative of GP News Media for news reporting and related activities.</p>
+          <p><strong>2) Purpose Bound:</strong> Issued solely for journalistic and news-reporting purposes including
+            reporting, video journalism, and live coverage.</p>
+          <p><strong>3) Non-Transferable:</strong> Valid only for the person named and photographed on the card.
+            Sharing, lending, or duplication is prohibited.</p>
+          <p><strong>4) Produce on Request:</strong> The bearer must present this ID to lawful authorities/security on
+            demand and carry a valid government photo ID.</p>
+          <p><strong>5) Loss/Misuse:</strong> Any loss, theft, or misuse must be reported immediately to GP News Media
+            for deactivation.</p>
+          <p><strong>6) Verification:</strong> Scan the QR on the Press ID or search the directory above to verify
+            membership and validity.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact / Helpline -->
-  <section id="verify">
-    <div class="container">
-      <div class="panel">
-        <h3>Media Helpline</h3>
-        <p class="muted">For verification and official queries.</p>
-        <div class="terms">
-          <p>📞 <strong>+91-9503457174</strong> &nbsp; | &nbsp; ✉️ <a href="mailto:contact@gpnewsmedia.in">contact@gpnewsmedia.in</a></p>
-          <p>Facebook: <a href="https://www.facebook.com/GPNewsMedia24/" target="_blank" rel="noopener">@GPNewsMedia24</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
 
+
+  <!-- FOOTER -->
   <footer>
     <div class="container footgrid">
       <div>
-        <strong>GP News Media</strong><br />Independent Digital Media Platform · Goa
-        <div style="margin-top:6px; font-size:12px">© <span id="year"></span> GP News Media. All rights reserved.</div>
+        <strong>GP News Media</strong><br />
+        Independent Digital Media Platform · Goa
+        <div style="margin-top:6px; font-size:12px">
+          © <span id="year"></span> GP News Media. All rights reserved.
+        </div>
       </div>
+
       <div>
-        <div>Editorial Standards</div>
-        <div><small><a href="#terms">Terms of Use</a> · <a href="#verify">Verification</a></small></div>
+        <div><strong>Media Helpline</strong></div>
+        <p>📞 <a href="tel:+919503457174">+91-9503457174</a></p>
+        <p>✉️ <a href="mailto:gpnewsmedia.goa@gmail.com">gpnewsmedia.goa@gmail.com</a></p>
       </div>
-      <!-- <div>
-        <div>Built for GitHub Pages</div>
-        <div><small>Static site · No cookies · No trackers</small></div>
-      </div> -->
+
+      <div>
+        <div><strong>Connect</strong></div>
+        <div style="display:flex; gap:14px; margin-top:8px;">
+          <a class="icon-link" href="https://www.facebook.com/GPNewsMedia24/" target="_blank" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 5 3.66 9.13 8.44 9.88v-6.99h-2.54V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 2.89h-2.33v6.99C18.34 21.13 22 17 22 12z" />
+            </svg>
+          </a>
+          <a class="icon-link" href="https://www.youtube.com/c/gpnewsmedia24" target="_blank" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M19.615 3.184c-1.407-.152-4.853-.184-7.615-.184s-6.208.032-7.615.184C2.732 3.348 2 4.207 2 6.5v11c0 2.293.732 3.152 2.385 3.316 1.407.152 4.853.184 7.615.184s6.208-.032 7.615-.184C21.268 20.652 22 19.793 22 17.5v-11c0-2.293-.732-3.152-2.385-3.316zM10 15.5v-7l6 3.5-6 3.5z" />
+            </svg>
+          </a>
+        </div>
+
+      </div>
     </div>
   </footer>
 
+
   <!-- Data + Logic -->
-<script>
-  async function loadMembers() {
-    try {
-      const res = await fetch("data/ALL_MEMBERS.json"); // path relative to root
-      const MEMBERS = await res.json();
+  <script>
+    async function loadMembers() {
+      try {
+        const res = await fetch("data/ALL_MEMBERS.json"); // path relative to root
+        const MEMBERS = await res.json();
 
-      const grid = document.getElementById('grid');
+        const grid = document.getElementById('grid');
 
-      function card(member){
-        const daysLeft = daysUntil(member.validTill);
-        const statusBadge = daysLeft < 0 ? 'Expired' : member.status;
-        return `
+        function card(member) {
+          const daysLeft = daysUntil(member.validTill);
+          const statusBadge = daysLeft < 0 ? 'Expired' : member.status;
+          return `
           <article class="card">
             <div class="card-head">
               <img class="avatar" src="${member.avatar}" alt="${member.name}" />
@@ -234,47 +534,48 @@
               <a class="btn" href="profile.html?id=${member.id}">Open Profile ▸</a>
             </div>
           </article>`;
+        }
+
+        function render() {
+          const q = document.getElementById('search').value.toLowerCase();
+          const role = document.getElementById('role').value;
+          const stat = document.getElementById('status').value;
+          const out = MEMBERS.filter(m =>
+            (!q || [m.name, m.city, m.id].some(x => x.toLowerCase().includes(q))) &&
+            (!role || m.role === role) &&
+            (!stat || (stat === 'Expired' ? daysUntil(m.validTill) < 0 : m.status === stat))
+          ).map(card).join('');
+          grid.innerHTML = out || `<div class="panel">No results. Try a different search or filter.</div>`;
+        }
+
+        function fmt(iso) {
+          const d = new Date(iso);
+          return d.toLocaleDateString("en-IN", { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function daysUntil(iso) {
+          const diff = new Date(iso) - new Date();
+          return Math.floor(diff / (1000 * 60 * 60 * 24));
+        }
+
+        // Attach search/filter listeners
+        ['search', 'role', 'status'].forEach(id =>
+          document.getElementById(id).addEventListener('input', render)
+        );
+
+        // Initial render
+        render();
+
+      } catch (err) {
+        console.error("Failed to load members:", err);
+        document.getElementById('grid').innerHTML = `<div class="panel">⚠️ Could not load member directory.</div>`;
       }
-
-      function render(){
-        const q = document.getElementById('search').value.toLowerCase();
-        const role = document.getElementById('role').value;
-        const stat = document.getElementById('status').value;
-        const out = MEMBERS.filter(m =>
-          (!q || [m.name, m.city, m.id].some(x=>x.toLowerCase().includes(q))) &&
-          (!role || m.role === role) &&
-          (!stat || (stat === 'Expired' ? daysUntil(m.validTill) < 0 : m.status === stat))
-        ).map(card).join('');
-        grid.innerHTML = out || `<div class="panel">No results. Try a different search or filter.</div>`;
-      }
-
-      function fmt(iso) {
-        const d = new Date(iso);
-        return d.toLocaleDateString("en-IN", { year: 'numeric', month: 'short', day: 'numeric' });
-      }
-
-      function daysUntil(iso) {
-        const diff = new Date(iso) - new Date();
-        return Math.floor(diff / (1000 * 60 * 60 * 24));
-      }
-
-      // Attach search/filter listeners
-      ['search','role','status'].forEach(id =>
-        document.getElementById(id).addEventListener('input', render)
-      );
-
-      // Initial render
-      render();
-
-    } catch (err) {
-      console.error("Failed to load members:", err);
-      document.getElementById('grid').innerHTML = `<div class="panel">⚠️ Could not load member directory.</div>`;
     }
-  }
 
-  // Call loader after page loads
-  loadMembers();
-</script>
+    // Call loader after page loads
+    loadMembers();
+  </script>
 
 </body>
+
 </html>

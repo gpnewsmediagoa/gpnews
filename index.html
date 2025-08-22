@@ -500,6 +500,7 @@
     .social-links .icon-link[aria-label="YouTube"]:hover svg {
       fill: #ff0000;
     }
+
     /* Mobile adjustments for footer social links */
 @media (max-width: 600px) {
   .social-links {
@@ -522,9 +523,11 @@
     width: 26px;
     height: 26px;
   }
+} /* ← close properly */
+
+/* Latest Posts Section */
 #latest-posts {
   padding: 40px 0;
-  background: var(--card);
 }
 
 #latest-posts h3 {
@@ -537,8 +540,7 @@
 .fb-wrapper {
   display: flex;
   justify-content: center;
-  max-width: 100%;
-  overflow: hidden;
+  width: 100%;
 }
 
 .fb-page {
@@ -547,11 +549,6 @@
   margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-  .fb-page {
-    max-width: 100% !important;
-  }
-}
 
 
   </style>
@@ -617,7 +614,7 @@
       <div class="fb-page"
            data-href="https://www.facebook.com/GPNewsMedia24/"
            data-tabs="timeline"
-           data-width="500"
+           data-width="100%"
            data-height=""
            data-small-header="false"
            data-hide-cover="false"

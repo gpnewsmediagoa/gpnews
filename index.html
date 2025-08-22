@@ -188,10 +188,24 @@
 
     /* Search/Filters */
     .toolbar {
-      margin-top: 22px;
+      margin: 20px 0 30px;
+      /* adds top & bottom breathing space */
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 600px) {
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .toolbar .input,
+      .toolbar select {
+        width: 100%;
+      }
     }
 
     .input,
@@ -627,31 +641,30 @@
   <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v15.0">
   </script>
 
-  <!-- Filters -->
-  <div class="toolbar">
-    <input id="search" class="input grow" placeholder="Search by name, city, or ID…" />
-    <select id="role">
-      <option value="">All Roles</option>
-      <option>Journalist</option>
-      <option>Video Journalist</option>
-      <option>Correspondent</option>
-      <option>Editor</option>
-      <option>Photographer</option>
-    </select>
-    <select id="status">
-      <option value="">All Status</option>
-      <option>Active</option>
-      <option>On Hold</option>
-      <option>Expired</option>
-    </select>
-  </div>
-  </div>
-  </section>
-
   <!-- Directory -->
   <section id="directory">
     <div class="container">
       <h3>Official Directory & Verification</h3>
+
+      <!-- Filters -->
+      <div class="toolbar">
+        <input id="search" class="input grow" placeholder="Search by name, city, or ID…" />
+        <select id="role">
+          <option value="">All Roles</option>
+          <option>Journalist</option>
+          <option>Video Journalist</option>
+          <option>Correspondent</option>
+          <option>Editor</option>
+          <option>Photographer</option>
+        </select>
+        <select id="status">
+          <option value="">All Status</option>
+          <option>Active</option>
+          <option>On Hold</option>
+          <option>Expired</option>
+        </select>
+      </div>
+
       <div id="grid" class="grid" aria-live="polite"></div>
     </div>
   </section>
